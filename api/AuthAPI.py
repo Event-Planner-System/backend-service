@@ -1,40 +1,35 @@
-from fastapi import APIRouter
 from model.user import User
+from fastapi import APIRouter, HTTPException, status
 from service.AuthService import register_user, login_user
 
 
 router = APIRouter()
 
-
-@router.post("/register")
+#register endpoint
+@router.post("/register", status_code=status.HTTP_201_CREATED)
 async def register(user: User):
-    return await register_user(user)
+    try:
+        result = await register_user(user)
+        return result
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
 
-@router.get("/login")
-async def login(user: User):
-    return await login_user(user.email, user.password)
+#login endpoint
+@router.post("/login")
+async def login_endpoint(data: dict):
+    email = data.get("email")
+    password = data.get("password")
 
+    if not email or not password:
+        raise HTTPException(status_code=400, detail="Email and password are required")
 
-# from fastapi import APIRouter, Depends, HTTPException, status
-# from model.UserDTO import UserDTO
-# from service.AuthService import AuthService
-
-# router = APIRouter(prefix="/auth", tags=["Auth"])
-# auth_service = AuthService()
-
-# @router.post("/register", response_model=UserDTO)
-# async def register_user(user: UserDTO):
-#     try:
-#         new_user = await auth_service.register_user(user)
-#         return new_user
-#     except ValueError as ve:
-#         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(ve))
-    
-# @router.post("/login")
-# async def login_user(username: str, password: str):
-#     try:
-#         token = await auth_service.login_user(username, password)
-#         return {"access_token": token}
-#     except ValueError as ve:
-#         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=str(ve))
+    try:
+        token = await login_user(email, password)
+        return token
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))

@@ -3,6 +3,8 @@ from model.user import User
 from fastapi import HTTPException
 from repo.UserRepo import UserRepository
 from datetime import timedelta
+from service.EmailService import EmailService
+from email_templates.RegisterationTemplate import RegistrationTemplate
 
 
 async def register_user(user : User):
@@ -16,7 +18,17 @@ async def register_user(user : User):
     user_dict = user.dict()
     user_dict["password"] = hashed_password
     saved_user = await UserRepository.save_user(user_dict)
+    
+    # Send registration email
+    template = RegistrationTemplate()
+    email_service = EmailService(template)
+    context = {"name": user.userName, "app_name": "Event planner"}
+    email_service.send_email(user.email, context)
+    
     return {"message": "User registered successfully"}
+
+
+    
 
 async def login_user(email: str, password: str):
     user = await UserRepository.get_by_email(email)
