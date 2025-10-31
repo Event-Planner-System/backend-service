@@ -1,2 +1,7 @@
-EMAIL_ADDRESS = "afnansayed50@gmail.com"
-EMAIL_APP_KEY = "swnh lnng smly evxx"
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
+EMAIL_APP_KEY = os.getenv("EMAIL_APP_KEY")
