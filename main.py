@@ -31,6 +31,6 @@ async def root():
 async def test_connection():
     return {"status": "success", "message": "Frontend connected successfully!"}
 
-@app.post("/register")
+@app.post("/auth/register")
 async def register(user: User):
     return await register_user(user)
