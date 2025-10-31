@@ -11,7 +11,7 @@ async def register(user: User):
     return await register_user(user)
 
 
-@router.get("/login")
+@router.post("/login")
 async def login(user: User):
     return await login_user(user.email, user.password)
 
