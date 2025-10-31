@@ -4,14 +4,17 @@ import pymongo
 
 
 class UserRepository:
+    def __init__(self, collection):
+        self.collection = collection
+        
     async def get_user_by_username(username: str) -> dict:
         user = await users_collection.find_one({"username": username})
         if not user:
             raise HTTPException(status_code=404, detail=f"User with username '{username}' not found")
         return user
 
-    async def get_user_by_email(email: str) -> dict:
-        user = await users_collection.find_one({"email": email})
+    async def get_user_by_email(self, email: str) -> dict:
+        user = await self.collection.find_one({"email": email})
         if not user:
             raise HTTPException(status_code=404, detail=f"User with email '{email}' not found")
         return user
