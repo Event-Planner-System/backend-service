@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from model.user import User
-from service.AuthService import register_user, login_user
+from ..model.user import User
+from ..service.AuthService import register_user, login_user
 
 
 router = APIRouter()
