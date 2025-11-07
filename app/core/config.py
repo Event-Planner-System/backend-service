@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     EMAIL_APP_KEY : str
 
     class Config:
-        env_file = ".env"
+        env_file = "./app/.env"
         case_sensitive = True
 
 settings = Settings()

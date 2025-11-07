@@ -1,5 +1,5 @@
 from ..core.config import settings
-from ..email_templates.EmailTemplateInterface import EmailTemplateInterface
+from .EmailTemplateInterface import EmailTemplateInterface
 from email.message import EmailMessage
 import smtplib
 from email.utils import formataddr

@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from .api.AuthAPI import router as auth_router
+from .routes.auth_routes import router as auth_router
 from fastapi.middleware.cors import CORSMiddleware
 from .database.connection import connect_to_mongo, close_mongo_connection
 from contextlib import asynccontextmanager
@@ -39,7 +39,7 @@ app.include_router(auth_router, prefix="/auth", tags=["Authentication"])
 
 @app.get("/")
 async def root():
-    return {"message": "User Management Service is running."}
+    return {"message": "Event Planner is running."}
 
 
 @app.get("/test-connection", tags=["Connection Test For Frontend"])
