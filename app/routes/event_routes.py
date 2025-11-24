@@ -136,3 +136,25 @@ async def delete_event(
     await db["events"].delete_one({"_id": ObjectId(event_id)})
     
     return {"message": "Event deleted successfully"}
+
+
+async def get_organizers(event_id: str) -> List[EventParticipant] | None:
+    db = connection.db
+    event = await db["events"].find_one({"_id": ObjectId(event_id)})
+
+    # Event not found
+    if not event:
+        return []
+
+    # Safely get participants list
+    participants = event.get("participants", [])
+
+    # Filter organizers
+    organizers = [
+        EventParticipant(**p)
+        for p in participants
+        if UserRole(p.get("role")) == UserRole.ORGANIZER
+    ]
+
+    return organizers
+

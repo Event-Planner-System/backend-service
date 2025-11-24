@@ -4,6 +4,7 @@ from .routes.event_routes import router as event_router  # Add this line
 from fastapi.middleware.cors import CORSMiddleware
 from .database.connection import connect_to_mongo, close_mongo_connection
 from contextlib import asynccontextmanager
+from .routes.invitation_routes import router as invitation_router
 
 
 @asynccontextmanager
@@ -35,12 +36,13 @@ app.add_middleware(
 )
 
 app.include_router(auth_router, prefix="/auth", tags=["Authentication"])
-app.include_router(event_router, prefix="/events", tags=["Events"])  # Add this line
+app.include_router(event_router, prefix="/events", tags=["Events"])
+app.include_router(invitation_router, prefix="/invitations", tags=["Invitations"])
 
 
 @app.get("/")
 async def root():
-    return {"message": "Event Planner is running."}
+    return {"message": "Event Planner is running.",}
 
 
 @app.get("/test-connection", tags=["Connection Test For Frontend"])
