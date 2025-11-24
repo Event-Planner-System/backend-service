@@ -66,3 +66,56 @@ async def invite_attendee(user_id: str, event_id: str, email: str, user_role: st
     return {"message": "Invitation sent successfully."}
 
 
+@router.post("/{event_id}/accept-invitation-attendee/{user_id}")
+async def  accept_invitation_attendee(event_id: str, user_id: str, status: str):
+    """
+    Accept invitation as attendee.
+    """
+    # Implementation goes here
+    db = connection.db
+    event = await db["events"].find_one({"_id": ObjectId(event_id)})
+    if not event:
+        raise HTTPException(status_code=404, detail="Event not found")
+    if(status not in ["Going", "Maybe", "Not Going"]):
+        raise HTTPException(status_code=400, detail="Invalid status")
+    
+    result = await db["events"].update_one(
+        {"_id": event["_id"], "participants.user_id": user_id},
+        {"$set": {"participants.$.attendance_status": status}}
+    )
+
+    if(result.modified_count == 0):
+        raise HTTPException(status_code=404, detail="Participant not found in event")
+    
+    return {"message": "Invitation accepted successfully."}
+
+
+@router.post("/{event_id}/accept-invitation-organizer/{user_id}")
+async def accept_invitation_organizer(event_id: str, user_id: str, accept: bool):
+    """
+    Accept invitation as organizer.
+    """
+    # Implementation goes here
+    db = connection.db
+    event = await db["events"].find_one({"_id": ObjectId(event_id)})
+    if not event:
+        raise HTTPException(status_code=404, detail="Event not found")
+    
+    if(accept == False):
+        result = await db["events"].update_one(
+            {"_id": event["_id"]},
+            {"$pull": {"participants": {"user_id": user_id}}}
+        )
+        if(result.modified_count == 0):
+            raise HTTPException(status_code=404, detail="Participant not found in event")
+        return {"message": "Organizer declined invitation."}
+    
+    result = await db["events"].update_one(
+        {"_id": event["_id"], "participants.user_id": user_id},
+        {"$set": {"participants.$.attendance_status": "Going"}}
+    )
+
+    if(result.modified_count == 0):
+        raise HTTPException(status_code=404, detail="Participant not found in event")
+    
+    return {"message": "Organizer accepted invitation successfully."}
