@@ -93,51 +93,74 @@ async def create_event(
     }
 
 
-@router.get("/my-events", response_model=List[dict])
-async def get_my_organized_events(current_user: dict = Depends(get_current_user)):
+#events user organizer
+@router.get("/my-organizer-events", response_model=List[dict])
+async def get_all_events_i_organize(current_user: dict = Depends(get_current_user)):
     """
-    Get all events organized by the current user.
+    Get all events where the user is an organizer.
+    This means: any participant with role='organizer'.
     """
     db = connection.db
-    
+
+    # Find events where current user appears as organizer in participants
     events = await db["events"].find(
-        {"organizer_id": current_user["user_id"]}
-    ).to_list(length=100)
-    
+        {
+            "participants": {
+                "$elemMatch": {
+                    "user_id": current_user["user_id"],
+                    "role": "organizer"
+                }
+            }
+        }
+    ).to_list(length=200)
+
     return [event_helper(event) for event in events]
 
 
+#delete only by organizer
 @router.delete("/{event_id}", status_code=status.HTTP_200_OK)
 async def delete_event(
     event_id: str,
     current_user: dict = Depends(get_current_user)
 ):
     """
-    Delete an event. Only the organizer who created it can delete the event.
+    Delete an event.
+    Any organizer (creator or invited organizer) can delete it.
     """
     db = connection.db
-    
+
+    # Validate event ID
     try:
-        event = await db["events"].find_one({"_id": ObjectId(event_id)})
+        obj_id = ObjectId(event_id)
     except:
         raise HTTPException(status_code=400, detail="Invalid event ID")
-    
+
+    # Fetch event
+    event = await db["events"].find_one({"_id": obj_id})
     if not event:
         raise HTTPException(status_code=404, detail="Event not found")
-    
-    # Check if current user is the organizer
-    if event["organizer_id"] != current_user["user_id"]:
+
+    # Get all organizers using your helper
+    organizers = await get_organizers(event_id)
+
+    # Check if current user is among organizers
+    is_organizer = any(
+        organizer.user_id == current_user["user_id"]
+        for organizer in organizers
+    )
+
+    if not is_organizer:
         raise HTTPException(
             status_code=403,
-            detail="Only the organizer can delete this event"
+            detail="Only organizers can delete the event"
         )
-    
+
     # Delete the event
-    await db["events"].delete_one({"_id": ObjectId(event_id)})
-    
+    await db["events"].delete_one({"_id": obj_id})
+
     return {"message": "Event deleted successfully"}
 
-
+#malak 
 async def get_organizers(event_id: str) -> List[EventParticipant] | None:
     db = connection.db
     event = await db["events"].find_one({"_id": ObjectId(event_id)})
@@ -158,3 +181,98 @@ async def get_organizers(event_id: str) -> List[EventParticipant] | None:
 
     return organizers
 
+#organizer can list attendees
+@router.get("/{event_id}/attendees")
+async def get_event_attendees(
+    event_id: str,
+    current_user: dict = Depends(get_current_user)
+):
+    """
+    Allow any organizer (creator or invited) to view attendees.
+    Uses get_organizers() helper.
+    """
+    db = connection.db
+
+    # Validate event ID
+    try:
+        obj_id = ObjectId(event_id)
+    except:
+        raise HTTPException(status_code=400, detail="Invalid event ID")
+
+    # Fetch event
+    event = await db["events"].find_one({"_id": obj_id})
+    if not event:
+        raise HTTPException(status_code=404, detail="Event not found")
+
+    # 🔥 Use your helper
+    organizers = await get_organizers(event_id)
+
+    # Check if current user is one of the organizers
+    is_organizer = any(
+        organizer.user_id == current_user["user_id"]
+        for organizer in organizers
+    )
+
+    if not is_organizer:
+        raise HTTPException(
+            status_code=403,
+            detail="Only organizers can view attendees"
+        )
+
+    # Extract only attendees
+    attendees = [
+        p for p in event.get("participants", [])
+        if p["role"] == "attendee"
+    ]
+
+    return {
+        "event_id": event_id,
+        "title": event["title"],
+        "attendees": attendees
+    }
+
+#user view events they invited to
+@router.get("/invited-events", response_model=List[dict])
+async def get_invited_events(current_user: dict = Depends(get_current_user)):
+    """
+    Users can view all events they are invited to.
+    This means any event where the user appears in participants
+    (either as attendee or organizer), but is NOT the creator.
+    """
+    db = connection.db
+
+    events = await db["events"].find(
+        {
+            "participants": {
+                "$elemMatch": {
+                    "user_id": current_user["user_id"]
+                }
+            },
+            # Exclude events created by the user (optional)
+            "organizer_id": {"$ne": current_user["user_id"]}
+        }
+    ).to_list(length=200)
+
+    return [event_helper(event) for event in events]
+
+#user list events they're attendance_status is 'Going'.
+@router.get("/going", response_model=List[dict])
+async def get_events_user_is_going_to(current_user: dict = Depends(get_current_user)):
+    """
+    Return all events where the user is a participant
+    AND their attendance_status is 'Going'.
+    """
+    db = connection.db
+
+    events = await db["events"].find(
+        {
+            "participants": {
+                "$elemMatch": {
+                    "user_id": current_user["user_id"],
+                    "attendance_status": "Going"
+                }
+            }
+        }
+    ).to_list(length=200)
+
+    return [event_helper(event) for event in events]
