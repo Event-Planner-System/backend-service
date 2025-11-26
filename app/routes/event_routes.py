@@ -108,7 +108,8 @@ async def get_all_events_i_organize(current_user: dict = Depends(get_current_use
             "participants": {
                 "$elemMatch": {
                     "user_id": current_user["user_id"],
-                    "role": "organizer"
+                    "role": "organizer",
+                    "attendance_status": "Going"
                 }
             }
         }
@@ -117,7 +118,6 @@ async def get_all_events_i_organize(current_user: dict = Depends(get_current_use
     return [event_helper(event) for event in events]
 
 
-#delete only by organizer
 @router.delete("/{event_id}", status_code=status.HTTP_200_OK)
 async def delete_event(
     event_id: str,
@@ -125,7 +125,7 @@ async def delete_event(
 ):
     """
     Delete an event.
-    Any organizer (creator or invited organizer) can delete it.
+    Only organizers with attendance_status='Going' can delete it.
     """
     db = connection.db
 
@@ -140,25 +140,27 @@ async def delete_event(
     if not event:
         raise HTTPException(status_code=404, detail="Event not found")
 
-    # Get all organizers using your helper
+    # Load organizers from event
     organizers = await get_organizers(event_id)
 
-    # Check if current user is among organizers
-    is_organizer = any(
+    # Check: current user must be organizer AND Going
+    is_organizer_and_going = any(
         organizer.user_id == current_user["user_id"]
+        and organizer.attendance_status == "Going"
         for organizer in organizers
     )
 
-    if not is_organizer:
+    if not is_organizer_and_going:
         raise HTTPException(
             status_code=403,
-            detail="Only organizers can delete the event"
+            detail="Only organizers marked as 'Going' can delete the event"
         )
 
-    # Delete the event
+    # Delete event
     await db["events"].delete_one({"_id": obj_id})
 
     return {"message": "Event deleted successfully"}
+
 
 #malak 
 async def get_organizers(event_id: str) -> List[EventParticipant] | None:
@@ -236,31 +238,48 @@ async def get_event_attendees(
 async def get_invited_events(current_user: dict = Depends(get_current_user)):
     """
     Users can view all events they are invited to.
-    This means any event where the user appears in participants
-    (either as attendee or organizer), but is NOT the creator.
+    
+    Rules:
+    - If user role is 'attendee' → show event always.
+    - If user role is 'organizer' → show event ONLY if attendance_status == 'Pending'.
+    - Creator should NOT see these events.
     """
     db = connection.db
 
-    events = await db["events"].find(
+    # 1️⃣ Get all events where user appears as participant (any role)
+    all_events = await db["events"].find(
         {
             "participants": {
-                "$elemMatch": {
-                    "user_id": current_user["user_id"]
-                }
+                "$elemMatch": {"user_id": current_user["user_id"]}
             },
-            # Exclude events created by the user (optional)
-            "organizer_id": {"$ne": current_user["user_id"]}
+            "organizer_id": {"$ne": current_user["user_id"]}  # exclude creator
         }
     ).to_list(length=200)
 
-    return [event_helper(event) for event in events]
+    filtered_events = []
 
-#user list events they're attendance_status is 'Going'.
-@router.get("/going", response_model=List[dict])
-async def get_events_user_is_going_to(current_user: dict = Depends(get_current_user)):
+    # 2️⃣ Apply your new filtering logic
+    for event in all_events:
+        for p in event.get("participants", []):
+            if p["user_id"] == current_user["user_id"]:
+
+                # Case 1: attendee → ALWAYS show
+                if p["role"] == "attendee":
+                    filtered_events.append(event)
+                    break
+
+                # Case 2: organizer → show ONLY when Pending
+                if p["role"] == "organizer" and p["attendance_status"] == "Pending":
+                    filtered_events.append(event)
+                    break
+    return [event_helper(event) for event in filtered_events]
+
+#user list all events if it's atendee or orginzer.
+@router.get("/all_event", response_model=List[dict])
+async def get_all_user_events(current_user: dict = Depends(get_current_user)):
     """
     Return all events where the user is a participant
-    AND their attendance_status is 'Going'.
+    AND their attendance_status is NOT 'Pending'.
     """
     db = connection.db
 
@@ -269,10 +288,11 @@ async def get_events_user_is_going_to(current_user: dict = Depends(get_current_u
             "participants": {
                 "$elemMatch": {
                     "user_id": current_user["user_id"],
-                    "attendance_status": "Going"
+                    "attendance_status": { "$ne": "Pending" }
                 }
             }
         }
     ).to_list(length=200)
 
     return [event_helper(event) for event in events]
+
