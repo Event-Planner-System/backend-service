@@ -1,0 +1,14 @@
+{
+  "workspace": {
+    "id": "ad2f177d-e78a-4fde-bce9-297013f87564"
+  },
+  "entities": {
+    "collections": [
+      "..\\postman\\collections\\Event Planner API Collection.postman_collection.json"
+    ],
+    "environments": [],
+    "specs": [],
+    "flows": [],
+    "globals": []
+  }
+}

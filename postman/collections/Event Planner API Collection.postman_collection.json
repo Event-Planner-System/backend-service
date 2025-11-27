@@ -1,0 +1,845 @@
+{
+  "info": {
+    "_postman_id": "088e8c81-ba22-408c-9069-66f46b1543b4",
+    "name": "Event Planner API Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "47867604"
+  },
+  "item": [
+    {
+      "name": "1 - Register Users",
+      "item": [
+        {
+          "name": "Register afnan",
+          "id": "a0e19f56-e47d-49ce-89a0-9d841a1e99bd",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"afnan\",\n    \"email\": \"afnan@example.com\",\n    \"password\": \"123456789\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register afnanb",
+          "id": "d6bc2d05-b7d7-4b72-a49d-92e09a603826",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"afnanbb\",\n    \"email\": \"afnanbb@example.com\",\n    \"password\": \"123456789\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register raghad",
+          "id": "d7b5e61c-1bc8-434f-b61d-a8b748a1227d",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"raghad\",\n    \"email\": \"raghad@example.com\",\n    \"password\": \"123456789\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register jana",
+          "id": "f018c42b-ffcc-40c2-8272-20279d97efe2",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"janaaa\",\n    \"email\": \"jana@example.com\",\n    \"password\": \"123456789\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register malak",
+          "id": "2687f6ce-6fcb-4c28-969e-fe1af483afe8",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"malak\",\n    \"email\": \"malak@example.com\",\n    \"password\": \"123456789\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "680e636d-8d75-4436-a627-fa858204ccae"
+    },
+    {
+      "name": "2 - Login Users",
+      "item": [
+        {
+          "name": "Login afnan",
+          "id": "29549dfa-60b9-4864-9e97-94d61de7080c",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"afnan@example.com\",\n    \"password\": \"123456789\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login afnanb",
+          "id": "880632bb-fbf7-4a3e-9335-b099926da17f",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"afnan@example.com\",\n    \"password\": \"123456789\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login raghad",
+          "id": "19a1fdc5-9d9c-403c-b7b8-bb3e78520896",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"raghad@example.com\",\n    \"password\": \"123456789\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login jana",
+          "id": "bb352d52-3a41-42ca-ab36-b62de6dd0d4a",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"jana@example.com\",\n    \"password\": \"123456789\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login malak",
+          "id": "4e2119d8-429f-4c88-a02a-fc7edf6db7ba",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"malak@example.com\",\n    \"password\": \"123456789\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "62eb4687-afa5-4e57-90f2-3ed59befee41"
+    },
+    {
+      "name": "3 - Event Creation",
+      "item": [
+        {
+          "name": "Create Event (Organizer: afnan)",
+          "id": "d3e71bea-62cd-4103-bc30-65ece2931fb2",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphbmFhYSIsImVtYWlsIjoiamFuYUBleGFtcGxlLmNvbSIsInVzZXJfaWQiOiI2OTI4MTA2ZjI4Zjc5MTc5MWY3ZjIyZmMiLCJleHAiOjE3NjQyMzY5NDd9.PYjUNlcJ1E75sNQ12K7DUoWY28xDSc3-77gqDtDDe1k",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFmbmFuIiwiZW1haWwiOiJhZm5hbkBleGFtcGxlLmNvbSIsInVzZXJfaWQiOiI2OTI2MjM4ZGQ4ZDBiYTY0YzFiZTE0ZWEiLCJleHAiOjE3NjQxNzkwMTN9.Bee4xvtH8Lbzd7ilmk9C2ca1z1c-83AagvOxQZN81t4"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"hellooo\",\n    \"description\": \"Discussion about sprint tasks\",\n    \"date\": \"2025-02-05\",\n    \"time\": \"13:00\",\n    \"location\": \"Meeting Room 3\",\n    \"invited_emails\": [\n       \"raghad@example.com\",\n       \"jana@example.com\",\n       \"malak@example.com\"\n    ]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/events/create",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "events",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "2fb4b550-6ee8-420a-829f-1ad40fa5fcc5"
+    },
+    {
+      "name": "4 - Invitations",
+      "item": [
+        {
+          "name": "Invite jognas Attendee",
+          "id": "6e0894e2-6fce-4c64-9e7f-ef67cba3d54f",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer <AFNAN_TOKEN>"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/invitations/69272e8459f6d7c0031e830c/attendee/john@example.com?user_id=6926238dd8d0ba64c1be14ea",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "invitations",
+                "69272e8459f6d7c0031e830c",
+                "attendee",
+                "john@example.com"
+              ],
+              "query": [
+                {
+                  "key": "user_id",
+                  "value": "6926238dd8d0ba64c1be14ea"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Invite afnanb as Organizer",
+          "id": "9956e926-d6a4-4d07-8d68-ac065d21b65c",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFmbmFuIiwiZW1haWwiOiJhZm5hbkBleGFtcGxlLmNvbSIsInVzZXJfaWQiOiI2OTI2MjM4ZGQ4ZDBiYTY0YzFiZTE0ZWEiLCJleHAiOjE3NjQxMTA4NDJ9.lzp__RYMsacX6IxC993EHgIJOoNVL4f2lWO56uHCJms"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/invitations/<PUT_EVENT_ID_HERE>/attendee/<PUT email >?user_id=<orginizer_USER_ID>",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "invitations",
+                "<PUT_EVENT_ID_HERE>",
+                "attendee",
+                "<PUT email >"
+              ],
+              "query": [
+                {
+                  "key": "user_id",
+                  "value": "<orginizer_USER_ID>"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Invite Malak as Attendee",
+          "id": "a0193a9c-d869-4554-ab98-41e6d8d60463",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer <AFNAN_TOKEN>"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/invitations/<PUT_EVENT_ID_HERE>/attendee/malak@example.com?user_id=<AFNAN_USER_ID>",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "invitations",
+                "<PUT_EVENT_ID_HERE>",
+                "attendee",
+                "malak@example.com"
+              ],
+              "query": [
+                {
+                  "key": "user_id",
+                  "value": "<AFNAN_USER_ID>"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "1ebd6b69-b68d-4c94-9d5c-7f5e1a9ecc17"
+    },
+    {
+      "name": "5 - Accept Invitations",
+      "item": [
+        {
+          "name": "Attendee Accept - Going (Raghad)",
+          "id": "e45f3851-1830-4fdf-badf-0f1d9e7a10ca",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhZ2hhZCIsImVtYWlsIjoicmFnaGFkQGV4YW1wbGUuY29tIiwidXNlcl9pZCI6IjY5MjYyM2EwZDhkMGJhNjRjMWJlMTRlYiIsImV4cCI6MTc2NDE3OTAyN30.07UT-ks8l_HA-0Fb7Ctj4ROhM818PmkOJ-uXqo2yeJQ"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/invitations/<event id>/accept-invitation-attendee/<user id >?status=Going",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "invitations",
+                "<event id>",
+                "accept-invitation-attendee",
+                "<user id >"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "Going"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Attendee Accept - Maybe (Malak)",
+          "id": "dd76558d-bf66-4ab3-8144-c42061d2c12d",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer <MALAK_TOKEN>"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/invitations/<PUT_EVENT_ID_HERE>/accept-invitation-attendee/<MALAK_USER_ID>?status=Maybe",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "invitations",
+                "<PUT_EVENT_ID_HERE>",
+                "accept-invitation-attendee",
+                "<MALAK_USER_ID>"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "Maybe"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Attendee Accept - Not Going (Jana as attendee example)",
+          "id": "ca7c828f-866b-4087-abd3-500dc7b9d3bc",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer <JANA_TOKEN>"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/invitations/<PUT_EVENT_ID_HERE>/accept-invitation-attendee/<JANA_USER_ID>?status=Not Going",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "invitations",
+                "<PUT_EVENT_ID_HERE>",
+                "accept-invitation-attendee",
+                "<JANA_USER_ID>"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "Not Going"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Organizer Accept (afnanb invited as co-organizer)",
+          "id": "b227e1bc-2638-442b-abc6-15e0a79bb632",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer <JANA_TOKEN>"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/invitations/<PUT_EVENT_ID_HERE>/accept-invitation-organizer/<JANA_USER_ID>?accept=true",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "invitations",
+                "<PUT_EVENT_ID_HERE>",
+                "accept-invitation-organizer",
+                "<JANA_USER_ID>"
+              ],
+              "query": [
+                {
+                  "key": "accept",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Organizer Decline (Jana)",
+          "id": "aed64904-2cc1-4b31-913f-377687ecae65",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer <JANA_TOKEN>"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/invitations/<PUT_EVENT_ID_HERE>/accept-invitation-organizer/<JANA_USER_ID>?accept=false",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "invitations",
+                "<PUT_EVENT_ID_HERE>",
+                "accept-invitation-organizer",
+                "<JANA_USER_ID>"
+              ],
+              "query": [
+                {
+                  "key": "accept",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "dbd820d3-8d06-408a-93ad-727c53cb1cbd"
+    },
+    {
+      "name": "6 - View Events",
+      "item": [
+        {
+          "name": "My Organizer Events (any organizer)",
+          "id": "de72acc5-341b-4d07-acda-2fbd5f3fe416",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer <USER_TOKEN>"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/events/my-organizer-events",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "events",
+                "my-organizer-events"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Invited Events (user is attendee or invited organizer)",
+          "id": "c3fade34-aba4-4727-8c61-d505cdf91f67",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer <USER_TOKEN>"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/events/invited-events",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "events",
+                "invited-events"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "all event",
+          "id": "8c8db3ff-440e-4f51-9b9f-b1f2b4620d0d",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFmbmFuYiIsImVtYWlsIjoiYWZuYW5iQGV4YW1wbGUuY29tIiwidXNlcl9pZCI6IjY5MjYyNjcwZDhkMGJhNjRjMWJlMTRlZiIsImV4cCI6MTc2NDExMTUzN30.6ChYSyadCVsKxyhasqY0ImBfY69NbTFLK1NdkcamsmA"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/events/all_event",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "events",
+                "all_event"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Attendees (Organizers Only)",
+          "id": "b4f9e10a-7983-4697-9342-236b69f65eda",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer <USER_TOKEN>"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/events/<PUT_EVENT_ID_HERE>/attendees",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "events",
+                "<PUT_EVENT_ID_HERE>",
+                "attendees"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "d40469b4-015d-4ca9-b4d2-cbf02e0921ce"
+    },
+    {
+      "name": "7 - Delete Event",
+      "item": [
+        {
+          "name": "Delete Event (Organizer Only)",
+          "id": "23be8f3c-1c3a-42d0-9507-c59b3ca83f3e",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFmbmFuYiIsImVtYWlsIjoiYWZuYW5iQGV4YW1wbGUuY29tIiwidXNlcl9pZCI6IjY5MjYyNjcwZDhkMGJhNjRjMWJlMTRlZiIsImV4cCI6MTc2NDExMTUzN30.6ChYSyadCVsKxyhasqY0ImBfY69NbTFLK1NdkcamsmA"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/events/69262429d8d0ba64c1be14ee",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "events",
+                "69262429d8d0ba64c1be14ee"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "d7e25a99-f2a3-47d6-a80e-cfb6fa71ed83"
+    },
+    {
+      "name": "Search",
+      "item": [
+        {
+          "name": "search",
+          "id": "0ba3b990-f67c-4a1c-ad6a-75ceb561be03",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphbmFhYSIsImVtYWlsIjoiamFuYUBleGFtcGxlLmNvbSIsInVzZXJfaWQiOiI2OTI4MTA2ZjI4Zjc5MTc5MWY3ZjIyZmMiLCJleHAiOjE3NjQyMzgzMDd9.XtYU7Z1s9fMjmhltx3osthPNPKlMBYqi3s7FjcNlBnk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"event_name\": \"hellooo\",\r\n    \"date\": \"2025-02-05\",\r\n    \"description\": \"Discussion about sprint tasks\",\r\n    \"user_role\": \"organizer\",\r\n    \"location\": \"Meeting Room 3\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/events/search",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "events",
+                "search"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "4093dc3f-b77c-46d8-8226-6bfd8f20513f"
+    }
+  ]
+}
