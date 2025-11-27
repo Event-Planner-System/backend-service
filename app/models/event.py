@@ -48,3 +48,14 @@ class EventUpdate(BaseModel):
 
 class AttendanceUpdate(BaseModel):
     attendance_status: AttendanceStatus
+    
+    
+class EventSearchParams(BaseModel):
+    """Model for advanced event search parameters"""
+    event_name: Optional[str] = Field(None, description="Search by event title")
+    date: Optional[str] = Field(None, description="Filter by date (YYYY-MM-DD or partial)")
+    description: Optional[str] = Field(None, description="Search in event description")
+    location: Optional[str] = Field(None, description="Search by location")
+    user_role: Optional[str] = Field(None, description="Filter by user role: organizer, attendee, or all")
+    
+   

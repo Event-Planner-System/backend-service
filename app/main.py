@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .database.connection import connect_to_mongo, close_mongo_connection
 from contextlib import asynccontextmanager
 from .routes.invitation_routes import router as invitation_router
+from .routes.search_routes import router as search_router
 
 
 @asynccontextmanager
@@ -38,6 +39,7 @@ app.add_middleware(
 app.include_router(auth_router, prefix="/auth", tags=["Authentication"])
 app.include_router(event_router, prefix="/events", tags=["Events"])
 app.include_router(invitation_router, prefix="/invitations", tags=["Invitations"])
+app.include_router(search_router, prefix="/events", tags=["Search"])
 
 
 @app.get("/")
