@@ -56,3 +56,12 @@ async def login(user: User):
     access_token = create_access_token(data=token_data, expires_delta=timedelta(minutes=60))
     
     return {"access_token": access_token, "token_type": "bearer"}
+
+@router.get("/user/{email}")
+async def get_user_by_email(email: str):
+    db = connection.db
+    user_data = await db["users"].find_one({"email": email})
+    if not user_data:
+        raise HTTPException(status_code=404, detail="User not found")
+    user_data["_id"] = str(user_data["_id"])  # Convert ObjectId to string
+    return user_data

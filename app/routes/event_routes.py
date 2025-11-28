@@ -296,3 +296,32 @@ async def get_all_user_events(current_user: dict = Depends(get_current_user)):
 
     return [event_helper(event) for event in events]
 
+@router.get("/{event_id}", response_model=dict)
+async def get_event_byId(
+    event_id: str,
+    current_user: dict = Depends(get_current_user)
+):
+    """
+    Get event details by ID if the user is a participant
+    and their attendance_status is NOT 'Pending'.
+    """
+    db = connection.db
+
+    # Validate event ID
+    try:
+        obj_id = ObjectId(event_id)
+    except:
+        raise HTTPException(status_code=400, detail="Invalid event ID")
+
+    # Fetch event with participant check
+    event = await db["events"].find_one(
+        {
+            "_id": obj_id  
+        }
+    )
+
+    if not event:
+        raise HTTPException(status_code=404, detail="Event not found or access denied")
+
+    return event_helper(event)
+
